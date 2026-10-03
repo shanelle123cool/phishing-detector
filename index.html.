@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detector 🛡️</title>
+</head>
+
+<body>
+
+    <h1>🛡️ Phishing Detector</h1>
+
+    <p>Vérifie un lien avant de cliquer dessus.</p>
+
+    <input type="text" id="urlInput" placeholder="https://exemple.com">
+
+    <button onclick="checkURL()">🔍 Vérifier le lien</button>
+
+    <div id="result"></div>
+
+    <script>
+        function checkURL() {
+            const url = document.getElementById("urlInput").value;
+            const result = document.getElementById("result");
+
+            if (!url) {
+                result.innerHTML = "⚠️ Entre un lien.";
+                return;
+            }
+
+            const suspiciousWords = [
+                "login",
+                "verify",
+                "password",
+                "account",
+                "free",
+                "urgent"
+            ];
+
+            let suspicious = false;
+
+            for (let word of suspiciousWords) {
+                if (url.toLowerCase().includes(word)) {
+                    suspicious = true;
+                }
+            }
+
+            if (suspicious) {
+                result.innerHTML = "🔴 Ce lien semble suspect.";
+            } else {
+                result.innerHTML = "🟢 Aucun signe évident de phishing détecté.";
+            }
+        }
+    </script>
+
+</body>
+</html>
