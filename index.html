@@ -1,16 +1,17 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Detector 🛡️</title>
+    <title>Détecteur de phishing 🛡️</title>
 </head>
 
 <body>
 
-    <h1>🛡️ Phishing Detector</h1>
+    <h1>🛡️ Détecteur de phishing</h1>
 
-    <p>Vérifie un lien avant de cliquer dessus.</p>
+    <p>Vérifiez un lien avant de cliquer dessus.</p>
 
     <input type="text" id="urlInput" placeholder="https://exemple.com">
 
@@ -24,11 +25,11 @@
             const result = document.getElementById("result");
 
             if (!url) {
-                result.innerHTML = "⚠️ Entre un lien.";
+                result.innerHTML = "⚠️ Veuillez entrer un lien.";
                 return;
             }
 
-            const suspiciousWords = [
+            const motsSuspects = [
                 "login",
                 "verify",
                 "password",
@@ -37,15 +38,15 @@
                 "urgent"
             ];
 
-            let suspicious = false;
+            let suspect = false;
 
-            for (let word of suspiciousWords) {
-                if (url.toLowerCase().includes(word)) {
-                    suspicious = true;
+            for (let mot of motsSuspects) {
+                if (url.toLowerCase().includes(mot)) {
+                    suspect = true;
                 }
             }
 
-            if (suspicious) {
+            if (suspect) {
                 result.innerHTML = "🔴 Ce lien semble suspect.";
             } else {
                 result.innerHTML = "🟢 Aucun signe évident de phishing détecté.";
@@ -55,3 +56,7 @@
 
 </body>
 </html>
+```
+
+Tu peux copier-coller ce code directement dans ton fichier `.html`.
+
