@@ -4,59 +4,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détecteur de phishing 🛡️</title>
+
+    <title>🛡️ Détecteur de Phishing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0b1220, #172b4d, #244b78);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 45px 20px 30px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin: 0 0 12px;
+        }
+
+        header p {
+            font-size: 19px;
+            color: #d8e7ff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 27px;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: #4da3ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #287fd0;
+            transform: translateY(-2px);
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 14px;
+            line-height: 1.6;
+        }
+
+        .danger {
+            background: rgba(255, 60, 60, 0.18);
+            border: 2px solid #ff5555;
+        }
+
+        .warning {
+            background: rgba(255, 190, 50, 0.18);
+            border: 2px solid #ffc233;
+        }
+
+        .safe {
+            background: rgba(50, 220, 120, 0.18);
+            border: 2px solid #42df83;
+        }
+
+        .tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 15px;
+        }
+
+        .tip {
+            background: rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .tip:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.13);
+        }
+
+        .tip .emoji {
+            font-size: 35px;
+        }
+
+        .tip h3 {
+            margin-bottom: 8px;
+        }
+
+        .steps {
+            padding-left: 20px;
+            line-height: 2;
+        }
+
+        .example {
+            background: rgba(255,255,255,0.08);
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #cbd9eb;
+        }
+
+        .credits {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>🛡️ Détecteur de phishing</h1>
+    <!-- TITRE -->
 
-    <p>Vérifiez un lien avant de cliquer dessus.</p>
+    <header>
 
-    <input type="text" id="urlInput" placeholder="https://exemple.com">
+        <h1>🛡️ Détecteur de Phishing</h1>
 
-    <button onclick="checkURL()">🔍 Vérifier le lien</button>
+        <p>
+            Apprends à reconnaître les liens suspects
+            et à rester en sécurité sur Internet.
+        </p>
 
-    <div id="result"></div>
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- DÉTECTEUR -->
+
+        <div class="card">
+
+            <h2>🔍 Vérifie un lien</h2>
+
+            <p>
+                Entre un lien ci-dessous pour vérifier s'il contient
+                certains signes qui peuvent être associés au phishing.
+            </p>
+
+            <input
+                type="text"
+                id="urlInput"
+                placeholder="Exemple : https://exemple.com"
+            >
+
+            <button onclick="checkURL()">
+                🔍 Vérifier le lien
+            </button>
+
+            <div id="result"></div>
+
+        </div>
+
+
+        <!-- SIGNES -->
+
+        <div class="card">
+
+            <h2>🚨 Comment reconnaître le phishing ?</h2>
+
+            <div class="tips">
+
+                <div class="tip">
+
+                    <div class="emoji">⚡</div>
+
+                    <h3>Urgence</h3>
+
+                    <p>
+                        Le message te demande d'agir
+                        immédiatement.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <div class="emoji">🔗</div>
+
+                    <h3>Lien étrange</h3>
+
+                    <p>
+                        Le lien semble différent du
+                        vrai site.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <div class="emoji">🔐</div>
+
+                    <h3>Informations privées</h3>
+
+                    <p>
+                        On te demande un mot de passe
+                        ou d'autres informations personnelles.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <div class="emoji">💰</div>
+
+                    <h3>Argent</h3>
+
+                    <p>
+                        On te demande de payer ou
+                        d'envoyer de l'argent.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RÈGLES -->
+
+        <div class="card">
+
+            <h2>🛡️ Règles simples</h2>
+
+            <ol class="steps">
+
+                <li>🔎 Vérifie l'adresse du site.</li>
+
+                <li>🚫 N'ouvre pas les liens suspects.</li>
+
+                <li>🔐 Ne donne jamais ton mot de passe.</li>
+
+                <li>⚠️ Méfie-toi des messages urgents.</li>
+
+                <li>📢 Si quelque chose semble étrange, demande de l'aide.</li>
+
+            </ol>
+
+        </div>
+
+
+        <!-- EXEMPLE -->
+
+        <div class="card">
+
+            <h2>📧 Exemple de phishing</h2>
+
+            <div class="example">
+
+                <p>
+                    <strong>⚠️ Votre compte est en danger !</strong>
+                </p>
+
+                <p>
+                    Nous avons détecté une activité inhabituelle.
+                    Cliquez rapidement sur le lien pour vérifier
+                    votre compte.
+                </p>
+
+                <p>
+                    🔗 http://example-login-verify.com
+                </p>
+
+                <p>
+                    🚨 <strong>Attention :</strong>
+                    Les messages qui utilisent la peur ou l'urgence
+                    peuvent être des tentatives de phishing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            🛡️ Reste prudent sur Internet !
+        </p>
+
+        <p class="credits">
+            ✨ Fait par Shanelle et Kaylee ✨
+        </p>
+
+    </footer>
+
 
     <script>
+
         function checkURL() {
-            const url = document.getElementById("urlInput").value;
-            const result = document.getElementById("result");
+
+            const url =
+                document.getElementById("urlInput").value.trim();
+
+            const result =
+                document.getElementById("result");
+
+
+            result.style.display = "block";
+
+
+            // Aucun lien
 
             if (!url) {
-                result.innerHTML = "⚠️ Veuillez entrer un lien.";
+
+                result.className = "warning";
+
+                result.innerHTML =
+                    "⚠️ <strong>Attention !</strong><br><br>" +
+                    "Veuillez entrer un lien avant de le vérifier.";
+
                 return;
             }
 
+
+            // Mots qui peuvent être suspects
+
             const motsSuspects = [
+
                 "login",
                 "verify",
+                "verification",
                 "password",
                 "account",
                 "free",
-                "urgent"
+                "urgent",
+                "gift",
+                "prize",
+                "winner",
+                "claim",
+                "confirm",
+                "security"
+
             ];
 
-            let suspect = false;
+
+            const urlLower =
+                url.toLowerCase();
+
+
+            let signes = [];
+
+
+            // Vérification des mots
 
             for (let mot of motsSuspects) {
-                if (url.toLowerCase().includes(mot)) {
-                    suspect = true;
+
+                if (urlLower.includes(mot)) {
+
+                    signes.push(mot);
+
                 }
+
             }
 
-            if (suspect) {
-                result.innerHTML = "🔴 Ce lien semble suspect.";
-            } else {
-                result.innerHTML = "🟢 Aucun signe évident de phishing détecté.";
+
+            // HTTP
+
+            if (urlLower.startsWith("http://")) {
+
+                signes.push("connexion HTTP");
+
             }
+
+
+            // Symbole @
+
+            if (url.includes("@")) {
+
+                signes.push("symbole @");
+
+            }
+
+
+            // Plusieurs signes
+
+            if (signes.length >= 2) {
+
+                result.className = "danger";
+
+                result.innerHTML =
+
+                    "🔴 <strong>Attention !</strong><br><br>" +
+
+                    "Ce lien contient plusieurs signes qui " +
+                    "peuvent être associés au phishing." +
+
+                    "<br><br>" +
+
+                    "⚠️ <strong>Signes trouvés :</strong><br>" +
+
+                    signes.join(" • ") +
+
+                    "<br><br>" +
+
+                    "🚫 Évite de cliquer dessus et vérifie " +
+                    "le site avec une source officielle.";
+
+            }
+
+
+            // Un seul signe
+
+            else if (signes.length === 1) {
+
+                result.className = "warning";
+
+                result.innerHTML =
+
+                    "🟠 <strong>Sois prudent !</strong><br><br>" +
+
+                    "Un signe potentiellement suspect a été trouvé : " +
+
+                    "<strong>" + signes[0] + "</strong>." +
+
+                    "<br><br>" +
+
+                    "🔎 Vérifie bien le site avant de continuer.";
+
+            }
+
+
+            // Aucun signe
+
+            else {
+
+                result.className = "safe";
+
+                result.innerHTML =
+
+                    "🟢 <strong>Aucun signe évident détecté.</strong>" +
+
+                    "<br><br>" +
+
+                    "Cela ne garantit pas que le lien est sûr. " +
+
+                    "Vérifie toujours le nom du site et la source " +
+                    "du message avant de cliquer.";
+
+            }
+
         }
+
     </script>
 
 </body>
 </html>
 ```
 
-Tu peux copier-coller ce code directement dans ton fichier `.html`.
+
+
 
